@@ -1,4 +1,5 @@
 // @ts-expect-error - auth module has implicit 'any' type
+export const runtime = 'edge';
 import { auth } from "@/lib/auth";
 import { toNextJsHandler } from "better-auth/next-js";
 import { NextRequest, NextResponse } from "next/server";
