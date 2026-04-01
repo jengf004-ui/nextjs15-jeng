@@ -1,21 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useSession } from "@/lib/auth-client";
 import { ArrowRight } from "lucide-react";
 
 export function HeroButtons() {
-  const router = useRouter();
-  const { data: session } = useSession();
-
   const handleClick = (href: string) => {
-    if (!session) {
-      // Not logged in → redirect to sign-in with callback
-      router.push(`/auth/signin?callbackUrl=${encodeURIComponent(href)}`);
-    } else {
-      // Logged in → navigate normally
-      window.open(href, "_blank", "noopener,noreferrer");
-    }
+    window.open(href, "_blank", "noopener,noreferrer");
   };
 
   return (

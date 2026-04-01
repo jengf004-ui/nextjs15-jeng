@@ -125,6 +125,9 @@ try {
       window: 60,  // 60 second window
       max: 5,      // max 5 sign-in attempts per window
       storage: "memory",
+      customRules: {
+        "/get-session": false,
+      },
     },
 
     advanced: {

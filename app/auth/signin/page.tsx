@@ -168,7 +168,7 @@ export default function SignInPage() {
       const response = await signIn.email({
         email,
         password,
-        callbackURL: "/account",
+        callbackURL: "/",
       });
 
       if (response.error) {
@@ -205,18 +205,7 @@ export default function SignInPage() {
         setError(authError.message || "Failed to sign in. Please try again.");
       } else {
         clearAttempts();
-
-        // Check if email is verified before redirecting
-        const sessionRes = await fetch("/api/auth/get-session", {
-          cache: "no-store",
-        });
-        const sessionData = await sessionRes.json().catch(() => null);
-
-        if (sessionData?.user && !sessionData.user.emailVerified) {
-          router.push("/auth/verify-email");
-        } else {
-          router.push("/account");
-        }
+        router.push("/");
       }
     } catch (err: unknown) {
       setError(

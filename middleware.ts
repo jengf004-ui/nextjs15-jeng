@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 // ─── Route definitions ──────────────────────────────────────
 // Routes that require authentication AND a verified email
-const PROTECTED_ROUTES = ["/account", "/dashboard"];
+const PROTECTED_ROUTES = ["/dashboard"];
 
 // Auth pages that logged-in users should be redirected away from
 const AUTH_ROUTES = ["/auth/signin", "/auth/signup"];
@@ -96,7 +96,7 @@ export async function middleware(request: NextRequest) {
 
   // Already verified but visiting verify-email → send to account
   if (isVerifyEmail && emailVerified) {
-    return NextResponse.redirect(new URL("/account", request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   // ★ Unverified email → force to verify-email on ALL routes
@@ -107,7 +107,7 @@ export async function middleware(request: NextRequest) {
 
   // Redirect logged-in (and verified) users away from sign-in / sign-up pages
   if (isAuthRoute) {
-    return NextResponse.redirect(new URL("/account", request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   // ── 3. All other routes — pass through ────────────────────

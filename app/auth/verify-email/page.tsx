@@ -31,7 +31,7 @@ export default function VerifyEmailPage() {
   useEffect(() => {
     if (!isPending && session?.user?.emailVerified) {
       setVerified(true);
-      setTimeout(() => router.push("/account"), REDIRECT_DELAY_MS);
+      setTimeout(() => router.push("/"), REDIRECT_DELAY_MS);
     }
   }, [session, isPending, router]);
 
@@ -53,7 +53,7 @@ export default function VerifyEmailPage() {
         if (d?.user?.emailVerified) {
           setVerified(true);
           clearInterval(id);
-          setTimeout(() => router.push("/account"), REDIRECT_DELAY_MS);
+          setTimeout(() => router.push("/"), REDIRECT_DELAY_MS);
         }
       } catch { /* ignore */ }
     }, POLL_INTERVAL_MS);
@@ -71,7 +71,7 @@ export default function VerifyEmailPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: session?.user?.email,
-          callbackURL: "/account",
+          callbackURL: "/",
         }),
       });
       if (res.ok) setResent(true);

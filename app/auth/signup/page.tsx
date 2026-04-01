@@ -59,7 +59,7 @@ export default function SignUpPage() {
         email,
         password,
         name,
-        callbackURL: "/account",
+        callbackURL: "/",
       });
 
       if (response.error) {
